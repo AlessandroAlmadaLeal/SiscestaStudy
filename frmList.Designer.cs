@@ -127,7 +127,7 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnNew);
             this.Name = "frmList";
-            this.Text = "frmList";
+            this.Text = "Lista de registros";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();

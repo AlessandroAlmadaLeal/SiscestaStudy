@@ -31,13 +31,13 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.cmbNascimento = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkFeminino = new System.Windows.Forms.CheckBox();
-            this.chkMasculino = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.txtMskCPF = new System.Windows.Forms.MaskedTextBox();
+            this.rdbMasculino = new System.Windows.Forms.RadioButton();
+            this.rdbFeminino = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,34 +60,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkFeminino);
-            this.groupBox1.Controls.Add(this.chkMasculino);
+            this.groupBox1.Controls.Add(this.rdbFeminino);
+            this.groupBox1.Controls.Add(this.rdbMasculino);
             this.groupBox1.Location = new System.Drawing.Point(35, 215);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(343, 107);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sexo";
-            // 
-            // chkFeminino
-            // 
-            this.chkFeminino.AutoSize = true;
-            this.chkFeminino.Location = new System.Drawing.Point(21, 68);
-            this.chkFeminino.Name = "chkFeminino";
-            this.chkFeminino.Size = new System.Drawing.Size(68, 17);
-            this.chkFeminino.TabIndex = 1;
-            this.chkFeminino.Text = "Feminino";
-            this.chkFeminino.UseVisualStyleBackColor = true;
-            // 
-            // chkMasculino
-            // 
-            this.chkMasculino.AutoSize = true;
-            this.chkMasculino.Location = new System.Drawing.Point(21, 28);
-            this.chkMasculino.Name = "chkMasculino";
-            this.chkMasculino.Size = new System.Drawing.Size(74, 17);
-            this.chkMasculino.TabIndex = 0;
-            this.chkMasculino.Text = "Masculino";
-            this.chkMasculino.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -134,6 +114,28 @@
             this.txtMskCPF.Size = new System.Drawing.Size(343, 20);
             this.txtMskCPF.TabIndex = 1;
             // 
+            // rdbMasculino
+            // 
+            this.rdbMasculino.AutoSize = true;
+            this.rdbMasculino.Location = new System.Drawing.Point(14, 31);
+            this.rdbMasculino.Name = "rdbMasculino";
+            this.rdbMasculino.Size = new System.Drawing.Size(73, 17);
+            this.rdbMasculino.TabIndex = 0;
+            this.rdbMasculino.TabStop = true;
+            this.rdbMasculino.Text = "Masculino";
+            this.rdbMasculino.UseVisualStyleBackColor = true;
+            // 
+            // rdbFeminino
+            // 
+            this.rdbFeminino.AutoSize = true;
+            this.rdbFeminino.Location = new System.Drawing.Point(14, 67);
+            this.rdbFeminino.Name = "rdbFeminino";
+            this.rdbFeminino.Size = new System.Drawing.Size(67, 17);
+            this.rdbFeminino.TabIndex = 1;
+            this.rdbFeminino.TabStop = true;
+            this.rdbFeminino.Text = "Feminino";
+            this.rdbFeminino.UseVisualStyleBackColor = true;
+            // 
             // frmPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,12 +163,12 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.DateTimePicker cmbNascimento;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkFeminino;
-        private System.Windows.Forms.CheckBox chkMasculino;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.MaskedTextBox txtMskCPF;
+        private System.Windows.Forms.RadioButton rdbFeminino;
+        private System.Windows.Forms.RadioButton rdbMasculino;
     }
 }

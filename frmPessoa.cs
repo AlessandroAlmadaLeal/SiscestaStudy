@@ -1,6 +1,6 @@
 ﻿using Siscesta.Model;
 using System;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Siscesta
@@ -15,10 +15,46 @@ namespace Siscesta
             InitializeComponent();
         }
 
+        public string valida()
+        {
+            string valida = "";
+
+            if (String.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                valida += " - Preencher o nome do indivíduo.\n";
+            }
+            
+            if (!txtMskCPF.MaskCompleted)
+            {
+                valida += " - Preenchimento do campo CPF.\n"; 
+            }
+
+            /* TODO: Implementar verificação de CPF.
+              
+            string chkDbCPF = _context.Pessoas.Where(x => x.Cpf == "Cpf").FirstOrDefault();
+
+            if (!String.IsNullOrEmpty(chkDbCPF))
+            {
+                valida += " - Esse CPF já existe na base de dados, verifique os registros.\n";
+            }
+
+            */
+
+            if (cmbNascimento.Value > DateTime.Now.AddYears(-18) || cmbNascimento.Value < DateTime.Now.AddYears(-90))
+            {
+                valida += " - Preenchimento da data de nascimento entre 18 anos e 90 anos.\n";
+            }
+            
+            if (!rdbMasculino.Checked && !rdbFeminino.Checked)
+            {
+                valida += " - Deve haver somente um sexo marcado ou pelo menos um.\n";
+            }
+
+            return valida;
+        }
+
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-
-            bool formCheck = false;
 
             Pessoa pessoa = new Pessoa();
             pessoa.Nome = txtNome.Text;
@@ -27,48 +63,18 @@ namespace Siscesta
             pessoa.CreateTime = DateTime.Now;
             pessoa.UpdateTime = DateTime.Now;
 
-            if (chkMasculino.Checked && !chkFeminino.Checked)
+            if (rdbMasculino.Checked)
             {
                 pessoa.Sexo = 'M';
             }
-            else if (chkFeminino.Checked && !chkMasculino.Checked)
+            else if (rdbFeminino.Checked)
             {
                 pessoa.Sexo = 'F';
             }
 
-            //Aqui faço uma serie de validações no formulário - Verificar o que pode fazer para melhorar!!!
+            var isValid = valida();
 
-            if (String.IsNullOrWhiteSpace(txtNome.Text))
-            {
-                MessageBox.Show("Por gentileza, preencher o nome.");
-                formCheck = false;
-            }
-            else if (String.IsNullOrWhiteSpace((Regex.Replace(txtMskCPF.Text, @"[^0-9a-zA-Z:,]+", ""))))
-            {
-                MessageBox.Show("Por gentileza, preencher o CPF.");
-                formCheck = false;
-            }
-            else if (String.IsNullOrWhiteSpace(cmbNascimento.Text) ||
-                     cmbNascimento.Value > DateTime.Now.AddYears(-18) ||
-                     cmbNascimento.Value < DateTime.Now.AddYears(-90))
-            {
-                MessageBox.Show("Verificar a data de nascimento dessa pessoa (Maior de 18 anos e no máximo 90 anos).");
-                formCheck = false;
-            }
-            else if (chkMasculino.Checked && chkFeminino.Checked ||
-                    !chkMasculino.Checked && !chkFeminino.Checked)
-            {
-                MessageBox.Show("Deve haver somente um sexo marcado ou pelo menos um.");
-                formCheck = false;
-            }
-            else
-            {
-                formCheck = true;
-            }
-
-            //Uma vez que a validação seguiu com sucesso, vamos realizar o cadastro no banco.
-
-            if (formCheck)
+            if (String.IsNullOrEmpty(isValid))
             {
                 try
                 {
@@ -87,8 +93,8 @@ namespace Siscesta
             }
             else
             {
-                MessageBox.Show("Falta alguma informação para prosseguir com o cadastro. \n" +
-                                "Por gentileza, corrija o formulário e submeta o cadastro novamente.");
+                MessageBox.Show("Um ou mais erros ocorreram no processo, por gentileza: \n\n" +
+                                $"{isValid}");
             }
         }
 
